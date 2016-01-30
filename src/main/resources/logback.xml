@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<property name="log.dir" value="/mnt/logs/hungho" />
+	<property name="datestamp" value="yyyy-MM-dd/HH:mm:ss.SSS/zzz" />
+	<property name="hivedatestamp" value="yyyy-MM-dd HH:mm:ss" />
+	<property name="roll.pattern.hourly" value="yyyy-MM-dd.HH" />
+	<property name="roll.pattern.daily" value="yyyy-MM-dd" />
+	<property name="roll.pattern.minutly" value="yyyy-MM-dd.HH.mm" />
+	
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+      </pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>DEBUG</level>
+    </filter>
+  </appender>
+
+  <appender name="sql_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${log.dir}/liemao.log</File>
+    <encoder>
+      <pattern>%d{${datestamp}} [%thread] %-5level %logger{36} - %msg%n
+      </pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <maxIndex>10</maxIndex>
+      <FileNamePattern>${log.dir}/liemao.log.%i
+      </FileNamePattern>
+    </rollingPolicy>
+    <triggeringPolicy
+      class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>2048KB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+<root level="INFO">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="sql_log" />
+  </root>
+</configuration>
