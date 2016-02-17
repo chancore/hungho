@@ -19,14 +19,14 @@
   </appender>
 
   <appender name="sql_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <File>${log.dir}/liemao.log</File>
+    <File>${log.dir}/hungho.log</File>
     <encoder>
       <pattern>%d{${datestamp}} [%thread] %-5level %logger{36} - %msg%n
       </pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
       <maxIndex>10</maxIndex>
-      <FileNamePattern>${log.dir}/liemao.log.%i
+      <FileNamePattern>${log.dir}/hungho.log.%i
       </FileNamePattern>
     </rollingPolicy>
     <triggeringPolicy
